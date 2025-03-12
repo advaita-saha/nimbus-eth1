@@ -24,4 +24,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ github.repository_owner }}/nimbus-eth1:${{ github.head_ref || github.ref_name }} 
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/nimbus-eth1:${{ github.head_ref || github.ref_name }} 
