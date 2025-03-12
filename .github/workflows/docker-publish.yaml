@@ -22,6 +22,5 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: .
           push: true
-          tags: ${{ github.repository }}:${{ github.head_ref || github.ref_name }} 
+          tags: ${{ github.repository_owner }}/nimbus-eth1:${{ github.head_ref || github.ref_name }} 
