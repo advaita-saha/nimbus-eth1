@@ -26,6 +26,8 @@ jobs:
             cpu: amd64
           - os: linux
             cpu: arm64
+          - os: macos
+            cpu: arm64
         include:
           - target:
               cpu: amd64
@@ -33,6 +35,9 @@ jobs:
           - target:
               cpu: arm64
             builder: ubuntu-24.04-arm
+          - target:
+              cpu: arm64
+            builder: macos-latest
     name: '${{ matrix.target.os }}/${{ matrix.target.cpu }}'
     runs-on: ${{ matrix.builder }}
     steps:
