@@ -2,6 +2,16 @@ name: Create Docker Images
 
 on:
   push:
+    branches:
+      - 'master'
+    paths-ignore:
+      - 'fluffy/**'
+      - '**/*.md'
+      - '.github/workflows/fluffy*.yml'
+      - 'nimbus_verified_proxy/**'
+      - '.github/workflows/nimbus_verified_proxy.yml'
+      
+  workflow_dispatch:
 
 env:
   REGISTRY_IMAGE: ${{ vars.DOCKERHUB_USERNAME }}/nimbus-eth1
