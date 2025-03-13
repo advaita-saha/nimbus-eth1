@@ -94,8 +94,8 @@ jobs:
         with:
           images: ${{ env.REGISTRY_IMAGE }}
           tags: |
-            ${{ github.ref_name }}
-            ${{ github.ref_name }}-${{ github.sha[0:7] }}
+            type=ref,event=branch
+            type=sha,format=short
       - name: Create manifest list and push
         working-directory: ${{ runner.temp }}/digests
         run: |
@@ -103,6 +103,7 @@ jobs:
             $(printf '${{ env.REGISTRY_IMAGE }}@sha256:%s ' *)
       - name: Inspect image
         run: |
+          echo ${{ steps.meta.outputs }}
           docker buildx imagetools inspect ${{ env.REGISTRY_IMAGE }}:${{ github.ref_name }}
 
 
