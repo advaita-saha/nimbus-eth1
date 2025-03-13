@@ -22,6 +22,9 @@ jobs:
           # Replace '/' with '-' to create a unique identifier for this platform
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
 
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v5
