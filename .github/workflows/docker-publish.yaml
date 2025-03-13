@@ -36,9 +36,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ${{ env.REGISTRY_IMAGE }}
-          tags: |
-            ${{ github.ref_name }}
-            ${{ github.ref_name }}-${{ github.sha[0:7] }}
+
       - name: Checkout Repository
         uses: actions/checkout@v4
       - name: Login to Docker Hub
