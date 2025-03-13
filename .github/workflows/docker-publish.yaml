@@ -8,17 +8,27 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        platform:
-          - linux/amd64
-          - linux/arm64
+        target:
+          - os: linux
+            cpu: amd64
+          - os: linux
+            cpu: arm64
+        include:
+          - target:
+              cpu: amd64
+            builder: ubuntu-latest
+          - target:
+              cpu: arm64
+            builder: ubuntu-24.04-arm
+    name: '${{ matrix.target.os }}/${{ matrix.target.cpu }}'
+    runs-on: ${{ matrix.builder }}
     steps:
       - name: Prepare
         run: |
-          platform=${{ matrix.platform }}
+          platform=${{ matrix.target.os }}/${{ matrix.target.cpu }}
           # Replace '/' with '-' to create a unique identifier for this platform
           echo "PLATFORM_PAIR=${platform//\//-}" >> $GITHUB_ENV
 
