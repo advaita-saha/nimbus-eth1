@@ -102,7 +102,7 @@ jobs:
           images: ${{ env.REGISTRY_IMAGE }}
           tags: |
             type=ref,event=branch
-            type=sha
+            type=sha,prefix={{branch}}-
 
       - name: Create manifest list and push
         working-directory: ${{ runner.temp }}/digests
