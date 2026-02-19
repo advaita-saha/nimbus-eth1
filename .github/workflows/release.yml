@@ -135,7 +135,7 @@ jobs:
           cd ../docker/dist/binaries
           REFNAME="${{ github.ref }}"
           TAG="${REFNAME#refs/tags/}"
-          DOCKER_BUILDKIT=1 docker build -f Dockerfile.${{ matrix.os }}-${{ matrix.cpu }} -t statusim/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-${TAG} -t statusim/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-latest .
+          DOCKER_BUILDKIT=1 docker build -f Dockerfile.${{ matrix.os }}-${{ matrix.cpu }} -t advaitasaha/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-${TAG} -t advaitasaha/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-latest .
           docker push advaitasaha/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-${TAG}
           docker push advaitasaha/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-latest
 
