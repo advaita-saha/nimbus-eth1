@@ -13,6 +13,8 @@ on:
     tags:
     - 'v*' # "v1.2.3"
 
+  workflow_dispatch:
+
 name: Upload Release Asset
 
 jobs:
