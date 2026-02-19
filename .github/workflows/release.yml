@@ -157,17 +157,15 @@ jobs:
       - name: Create and push multi-arch manifest (versioned)
         run: |
           TAG="${{ steps.extract_tag.outputs.tag }}"
-          docker manifest create advaitasaha/nimbus-eth1:${TAG} \
-            --amend advaitasaha/nimbus-eth1:linux-amd64-${TAG} \
-            --amend advaitasaha/nimbus-eth1:linux-arm64-${TAG}
-          docker manifest push advaitasaha/nimbus-eth1:${TAG}
+          docker buildx imagetools create -t advaitasaha/nimbus-eth1:${TAG} \
+            advaitasaha/nimbus-eth1:linux-amd64-${TAG}
+            advaitasaha/nimbus-eth1:linux-arm64-${TAG}
 
       - name: Create and push multi-arch manifest (latest)
         run: |
-          docker manifest create advaitasaha/nimbus-eth1:latest \
-            --amend advaitasaha/nimbus-eth1:linux-amd64-latest \
-            --amend advaitasaha/nimbus-eth1:linux-arm64-latest
-          docker manifest push advaitasaha/nimbus-eth1:latest
+          docker buildx imagetools create -t advaitasaha/nimbus-eth1:latest \
+            advaitasaha/nimbus-eth1:linux-amd64-latest
+            advaitasaha/nimbus-eth1:linux-arm64-latest
 
   prepare-release:
     name: Prepare release draft
