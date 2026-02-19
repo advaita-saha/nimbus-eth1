@@ -134,8 +134,8 @@ jobs:
           REFNAME="${{ github.ref }}"
           TAG="${REFNAME#refs/tags/}"
           DOCKER_BUILDKIT=1 docker build -f Dockerfile.${{ matrix.os }}-${{ matrix.cpu }} -t statusim/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-${TAG} -t statusim/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-latest .
-          docker push statusim/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-${TAG}
-          docker push statusim/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-latest
+          docker push advaitasaha/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-${TAG}
+          docker push advaitasaha/nimbus-eth1:${{ matrix.os }}-${{ matrix.cpu }}-latest
 
   docker-multiarch:
     name: Create multi-arch Docker manifest
@@ -156,16 +156,16 @@ jobs:
         run: |
           TAG="${{ steps.extract_tag.outputs.tag }}"
           docker manifest create statusim/nimbus-eth1:${TAG} \
-            --amend statusim/nimbus-eth1:linux-amd64-${TAG} \
-            --amend statusim/nimbus-eth1:linux-arm64-${TAG}
-          docker manifest push statusim/nimbus-eth1:${TAG}
+            --amend advaitasaha/nimbus-eth1:linux-amd64-${TAG} \
+            --amend advaitasaha/nimbus-eth1:linux-arm64-${TAG}
+          docker manifest push advaitasaha/nimbus-eth1:${TAG}
 
       - name: Create and push multi-arch manifest (latest)
         run: |
           docker manifest create statusim/nimbus-eth1:latest \
-            --amend statusim/nimbus-eth1:linux-amd64-latest \
-            --amend statusim/nimbus-eth1:linux-arm64-latest
-          docker manifest push statusim/nimbus-eth1:latest
+            --amend advaitasaha/nimbus-eth1:linux-amd64-latest \
+            --amend advaitasaha/nimbus-eth1:linux-arm64-latest
+          docker manifest push advaitasaha/nimbus-eth1:latest
 
   prepare-release:
     name: Prepare release draft
